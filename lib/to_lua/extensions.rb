@@ -47,5 +47,15 @@ module ToLua
         self.to_s
       end
     end
+
+    module Object
+      def to_lua
+        if self.respond_to? :as_lua
+          self.as_lua.to_lua
+        else
+          self.to_s.to_lua
+        end
+      end
+    end
   end
 end

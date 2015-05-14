@@ -27,3 +27,7 @@ end
 class FalseClass
   include ToLua::Extensions::ToString
 end
+
+class Object
+  include ToLua::Extensions::Object
+end

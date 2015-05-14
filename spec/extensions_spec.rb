@@ -85,4 +85,38 @@ describe ToLua::Extensions do
       expect(false.to_lua).to eq('false')
     end
   end
+
+  describe Object do
+    class AsLuaObject
+      def as_lua
+        { as_lua: true }
+      end
+    end
+
+    class ToSObject
+      def to_s
+        'to_s_object'
+      end
+    end
+
+    it 'calls as_lua if available' do
+      as_lua_obj = AsLuaObject.new
+      expect(as_lua_obj).to receive(:as_lua)
+      as_lua_obj.to_lua
+    end
+
+    it 'correctly serializes whatever is returned by as_lua' do
+      expect(AsLuaObject.new.to_lua).to eq('{["as_lua"]=true}')
+    end
+
+    it 'calls to_s if as_lua is not available' do
+      to_s_obj = ToSObject.new
+      expect(to_s_obj).to receive(:to_s)
+      to_s_obj.to_lua
+    end
+
+    it 'correctly serializes whatever is returned by to_s' do
+      expect(ToSObject.new.to_lua).to eq('"to_s_object"')
+    end
+  end
 end
