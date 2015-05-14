@@ -31,3 +31,21 @@ true.to_lua              # true
 false.to_lua             # false
 nil.to_lua               # nil
 ```
+
+## Custom objects
+
+Custom objects can define `as_lua` method. The return value will be serialized
+with `to_lua`. Example:
+
+```ruby
+class CustomObject
+  def as_lua
+    { lua: 'object' }
+  end
+end
+
+CustomObject.new.to_lua  # {["lua"]="object"}
+```
+
+If an object does not define the `as_lua` method, `to_s` will be used instead
+and the object will be serialized as a string.
