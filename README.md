@@ -34,8 +34,8 @@ nil.to_lua               # nil
 
 ## Custom objects
 
-Custom objects can define `as_lua` method. The return value will be serialized
-with `to_lua`. Example:
+Custom objects can define the `as_lua` method. The return value will be
+serialized with `to_lua`. Example:
 
 ```ruby
 class CustomObject
