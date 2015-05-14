@@ -12,5 +12,5 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/mntnorv/to_lua'
   s.license  = 'MIT'
 
-  spec.files = Dir['lib/**/*']
+  s.files = Dir['lib/**/*']
 end
