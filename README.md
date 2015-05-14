@@ -22,7 +22,7 @@ Or install it manually with:
 ```ruby
 {a: 'hash'}.to_lua       # {["a"]="hash"}
 [:some, :array].to_lua   # {"some","array"}
-"\nStr\"ing\x00".to_lua  # "\nString\0"
+"\nStr\"ing\x00".to_lua  # "\nStr\"ing\0"
 123456.to_lua            # 123456
 3.14159.to_lua           # 3.14159
 true.to_lua              # true
