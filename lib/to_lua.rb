@@ -1,33 +1,33 @@
-require_relative 'to_lua/extensions'
+require_relative 'to_lua/generator'
 
 class Hash
-  include ToLua::Extensions::Hash
+  include ToLua::Generator::GeneratorMethods::Hash
 end
 
 class Array
-  include ToLua::Extensions::Array
+  include ToLua::Generator::GeneratorMethods::Array
 end
 
 class String
-  include ToLua::Extensions::String
+  include ToLua::Generator::GeneratorMethods::String
 end
 
 class NilClass
-  include ToLua::Extensions::NilClass
+  include ToLua::Generator::GeneratorMethods::NilClass
 end
 
 class Numeric
-  include ToLua::Extensions::ToString
+  include ToLua::Generator::GeneratorMethods::ToString
 end
 
 class TrueClass
-  include ToLua::Extensions::ToString
+  include ToLua::Generator::GeneratorMethods::ToString
 end
 
 class FalseClass
-  include ToLua::Extensions::ToString
+  include ToLua::Generator::GeneratorMethods::ToString
 end
 
 class Object
-  include ToLua::Extensions::Object
+  include ToLua::Generator::GeneratorMethods::Object
 end

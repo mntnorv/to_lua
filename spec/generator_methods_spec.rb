@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ToLua::Extensions do
+describe ToLua::Generator::GeneratorMethods do
   describe Hash do
     it 'correctly serializes an empty Hash' do
       expect({}.to_lua).to eq('{}')
@@ -23,6 +23,14 @@ describe ToLua::Extensions do
     it 'calls to_s on keys' do
       expect({10 => 'value'}.to_lua).to eq('{["10"]="value"}')
     end
+
+    it 'correctly indents simple hash when pretty is true' do
+      expect({10 => 'value'}.to_lua(pretty: true)).to eq("{\n  [\"10\"] = \"value\"\n}")
+    end
+
+    it 'correctly indents nested hashes when pretty is true' do
+      expect({10 => { hash: true }}.to_lua(pretty: true)).to eq("{\n  [\"10\"] = {\n    [\"hash\"] = true\n  }\n}")
+    end
   end
 
   describe Array do
@@ -42,6 +50,14 @@ describe ToLua::Extensions do
       object = 'string'
       expect(object).to receive(:to_lua) { '**serialized_lua**' }
       expect([object].to_lua).to eq('{**serialized_lua**}')
+    end
+
+    it 'correctly indents simple array when pretty is true' do
+      expect([10, 'true'].to_lua(pretty: true)).to eq("{\n  10,\n  \"true\"\n}")
+    end
+
+    it 'correctly indents nested arrays when pretty is true' do
+      expect([[ 'nested', ['arrays']]].to_lua(pretty: true)).to eq("{\n  {\n    \"nested\",\n    {\n      \"arrays\"\n    }\n  }\n}")
     end
   end
 
