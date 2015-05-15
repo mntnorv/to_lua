@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/mntnorv/to_lua.svg)](https://travis-ci.org/mntnorv/to_lua)
+[![Gem Version](https://badge.fury.io/rb/to_lua.svg)](http://badge.fury.io/rb/to_lua)
 
 # to_lua
 Serialize Ruby objects to lua tables
