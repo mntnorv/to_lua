@@ -77,3 +77,11 @@ CustomObject.new.to_lua  # {["lua"]="object"}
 
 If an object does not define the `as_lua` method, `to_s` will be used instead
 and the object will be serialized as a string.
+
+## Contributing
+
+1. Fork it ( https://github.com/mntnorv/to_lua/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
