@@ -32,6 +32,34 @@ false.to_lua             # false
 nil.to_lua               # nil
 ```
 
+### Options
+#### Pretty formatting
+
+```ruby
+{a: 'hash', with: {a_nested: 'hash'}}.to_lua(pretty: true)
+
+# {
+#   ["a"] = "hash",
+#   ["with"] = {
+#     ["a_nested"] = "hash"
+#   }
+# }
+
+```
+
+#### Custom indentation
+
+```ruby
+{a: 'hash', with: {a_nested: 'hash'}}.to_lua(pretty: true, indent: '')
+
+# {
+# ["a"] = "hash",
+# ["with"] = {
+# ["a_nested"] = "hash"
+# }
+# }
+```
+
 ## Custom objects
 
 Custom objects can define the `as_lua` method. The return value will be
