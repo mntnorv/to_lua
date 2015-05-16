@@ -23,7 +23,7 @@ Or install it manually with:
 ## Usage
 
 ```ruby
-{a: 'hash'}.to_lua       # {["a"]="hash"}
+{a: 'hash'}.to_lua       # {a="hash"}
 [:some, :array].to_lua   # {"some","array"}
 "\nStr\"ing\x00".to_lua  # "\nStr\"ing\0"
 123456.to_lua            # 123456
@@ -40,9 +40,9 @@ nil.to_lua               # nil
 {a: 'hash', with: {a_nested: 'hash'}}.to_lua(pretty: true)
 
 # {
-#   ["a"] = "hash",
-#   ["with"] = {
-#     ["a_nested"] = "hash"
+#   a = "hash",
+#   with = {
+#     a_nested = "hash"
 #   }
 # }
 
@@ -54,9 +54,9 @@ nil.to_lua               # nil
 {a: 'hash', with: {a_nested: 'hash'}}.to_lua(pretty: true, indent: '')
 
 # {
-# ["a"] = "hash",
-# ["with"] = {
-# ["a_nested"] = "hash"
+# a = "hash",
+# with = {
+# a_nested = "hash"
 # }
 # }
 ```
@@ -73,7 +73,7 @@ class CustomObject
   end
 end
 
-CustomObject.new.to_lua  # {["lua"]="object"}
+CustomObject.new.to_lua  # {lua="object"}
 ```
 
 If an object does not define the `as_lua` method, `to_s` will be used instead

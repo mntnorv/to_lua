@@ -59,21 +59,21 @@ describe ToLua::Helpers do
     it 'returns true if the identifier both has valid characters and is not a reserved keyword' do
       allow(ToLua::Helpers).to receive(:valid_identifier_characters?).and_return(true)
       allow(ToLua::Helpers).to receive(:reserved_keyword?).and_return(false)
-      
+
       expect(ToLua::Helpers.valid_identifier?('test_identifier')).to be true
     end
     
     it 'returns false if the identifier has invalid characters' do
       allow(ToLua::Helpers).to receive(:valid_identifier_characters?).and_return(false)
       allow(ToLua::Helpers).to receive(:reserved_keyword?).and_return(false)
-      
+
       expect(ToLua::Helpers.valid_identifier?('test_identifier')).to be false
     end
     
     it 'returns false if the identifier is a reserved keyword' do
       allow(ToLua::Helpers).to receive(:valid_identifier_characters?).and_return(true)
       allow(ToLua::Helpers).to receive(:reserved_keyword?).and_return(true)
-      
+
       expect(ToLua::Helpers.valid_identifier?('test_identifier')).to be false
     end
   end
