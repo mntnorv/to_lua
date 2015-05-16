@@ -62,9 +62,16 @@ module ToLua
           self.each do |key, value|
             field  =  ''
             field  << state.indent * state.depth if state.pretty?
-            field  << '['
-            field  << key.to_s.to_lua
-            field  << ']'
+
+            key_str = key.to_s
+            if Helpers.valid_identifier?(key_str)
+              field << key_str
+            else
+              field << '['
+              field << key_str.to_lua
+              field << ']'
+            end
+
             field  << ' ' if state.pretty?
             field  << '='
             field  << ' ' if state.pretty?

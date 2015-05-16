@@ -7,21 +7,29 @@ describe ToLua::Generator::GeneratorMethods do
     end
 
     it 'correctly serializes a simple Hash' do
-      expect({key: 'value'}.to_lua).to eq('{["key"]="value"}')
+      expect({key: 'value'}.to_lua).to eq('{key="value"}')
     end
 
     it 'correctly serializes a Hash with multiple keys' do
-      expect({two: 'second', one: 'first'}.to_lua).to eq('{["two"]="second",["one"]="first"}')
+      expect({two: 'second', one: 'first'}.to_lua).to eq('{two="second",one="first"}')
     end
 
     it 'calls to_lua on values' do
       object = 'string'
       expect(object).to receive(:to_lua) { '**serialized_lua**' }
-      expect({key: object}.to_lua).to eq('{["key"]=**serialized_lua**}')
+      expect({key: object}.to_lua).to eq('{key=**serialized_lua**}')
     end
 
     it 'calls to_s on keys' do
       expect({10 => 'value'}.to_lua).to eq('{["10"]="value"}')
+    end
+    
+    it 'uses the ["key"] syntax if a key is not a valid identifier' do
+      expect({'+' => 'value'}.to_lua).to eq('{["+"]="value"}')
+    end
+    
+    it 'does not use the ["key"] syntax if a key is a valid identifier' do
+      expect({'_validIdentif1er' => 'value'}.to_lua).to eq('{_validIdentif1er="value"}')
     end
 
     it 'correctly indents simple hash when pretty is true' do
@@ -29,7 +37,7 @@ describe ToLua::Generator::GeneratorMethods do
     end
 
     it 'correctly indents nested hashes when pretty is true' do
-      expect({10 => { hash: true }}.to_lua(pretty: true)).to eq("{\n  [\"10\"] = {\n    [\"hash\"] = true\n  }\n}")
+      expect({10 => { hash: true }}.to_lua(pretty: true)).to eq("{\n  [\"10\"] = {\n    hash = true\n  }\n}")
     end
   end
 
@@ -122,7 +130,7 @@ describe ToLua::Generator::GeneratorMethods do
     end
 
     it 'correctly serializes whatever is returned by as_lua' do
-      expect(AsLuaObject.new.to_lua).to eq('{["as_lua"]=true}')
+      expect(AsLuaObject.new.to_lua).to eq('{as_lua=true}')
     end
 
     it 'calls to_s if as_lua is not available' do

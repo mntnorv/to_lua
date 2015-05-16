@@ -14,6 +14,11 @@ module ToLua
       "["  => "\\[",
       "]"  => "\\]"
     }.freeze
+    
+    LUA_RESERVED_KEYWORDS = %w(
+      and break do else elseif end false for function if in local nil not or
+      repeat return then true until while
+    )
 
     def self.encode_string(string)
       encoded = []
@@ -32,6 +37,18 @@ module ToLua
       end
 
       encoded.join
+    end
+    
+    def self.valid_identifier?(identifier)
+      valid_identifier_characters?(identifier) && !reserved_keyword?(identifier)
+    end
+
+    def self.valid_identifier_characters?(identifier)
+      !!(identifier =~ /^[_a-zA-Z][_a-zA-Z0-9]*$/)
+    end
+
+    def self.reserved_keyword?(identifier)
+      LUA_RESERVED_KEYWORDS.include?(identifier)
     end
   end
 end
