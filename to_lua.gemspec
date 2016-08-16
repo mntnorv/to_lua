@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
   s.name     = 'to_lua'
-  s.version  = '0.2.0'
+  s.version  = '0.2.1'
   s.date     = Date.today.to_s
   s.summary  = 'Serialize Ruby objects to lua tables'
   s.authors  = ['Mantas Norvaiša']
