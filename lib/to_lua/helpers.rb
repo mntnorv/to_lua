@@ -10,11 +10,9 @@ module ToLua
       "\v" => "\\v",
       "\\" => "\\\\",
       "\"" => "\\\"",
-      "'"  => "\\'",
-      "["  => "\\[",
-      "]"  => "\\]"
+      "'"  => "\\'"
     }.freeze
-    
+
     LUA_RESERVED_KEYWORDS = %w(
       and break do else elseif end false for function if in local nil not or
       repeat return then true until while
@@ -38,7 +36,7 @@ module ToLua
 
       encoded.join
     end
-    
+
     def self.valid_identifier?(identifier)
       valid_identifier_characters?(identifier) && !reserved_keyword?(identifier)
     end
